@@ -32,11 +32,7 @@ class RemoteControl(minChannel: Int, maxChannel: Int, blockedChannels: List[Int]
   }
 
   def numberKeyMoves(toChannelInNumberKey: Int, count: Int = 1): Int = {
-    if (toChannelInNumberKey/10 < 1 && toChannelInNumberKey%10 == toChannelInNumberKey){
-      count
-    }else{
-      numberKeyMoves(toChannelInNumberKey/10, count + 1)
-    }
+    toChannelInNumberKey.toString.lengthm
   }
 
   def backButton(previousChannelInBack: Int, toChannelInBack: Int): Int = {
