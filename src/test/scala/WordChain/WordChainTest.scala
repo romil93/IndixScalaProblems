@@ -1,4 +1,4 @@
-package WordChainTest
+package WordChain
 
 import org.scalatest.FlatSpec
 

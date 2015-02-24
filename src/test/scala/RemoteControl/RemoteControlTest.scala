@@ -1,4 +1,4 @@
-package RemoteControlTest
+package RemoteControl
 
 import RemoteControl.RemoteControl
 import org.scalatest.FlatSpec

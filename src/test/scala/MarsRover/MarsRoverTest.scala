@@ -1,6 +1,5 @@
-package MarsRoverTest
+package MarsRover
 
-import MarsRover._
 import org.scalatest.FlatSpec
 import org.scalatest.Matchers._
 

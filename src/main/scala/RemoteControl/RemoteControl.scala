@@ -39,27 +39,25 @@ class RemoteControl(minChannel: Int, maxChannel: Int, blockedChannels: List[Int]
     }
   }
 
-  def backButton(previousChannelInBack: Any, toChannelInBack: Int): Int = {
-    if (previousChannelInBack != Nil && previousChannelInBack == toChannelInBack){
+  def backButton(previousChannelInBack: Int, toChannelInBack: Int): Int = {
+    if (previousChannelInBack != -1 && previousChannelInBack == toChannelInBack){
       1
     }else{
       10000
     }
   }
 
-  def movesCalculator(previousChannelInMoves: Any, fromChannel: Int, toChannel: Int): Int = {
+  def movesCalculator(previousChannelInMoves: Int, fromChannel: Int, toChannel: Int): Int = {
     val upMoves = upKeyMoves(fromChannel, toChannel)
     val downMoves = downKeyMoves(fromChannel, toChannel)
     val numberKeyMove = numberKeyMoves(toChannel)
     val backMove = backButton(previousChannelInMoves, toChannel)
 
-    if (upMoves <= downMoves && upMoves <= numberKeyMove && upMoves <= backMove) upMoves
-    else if (downMoves <= upMoves && downMoves <= backMove && downMoves <= numberKeyMove) downMoves
-    else if (numberKeyMove <= downMoves && numberKeyMove <= upMoves && numberKeyMove <= backMove) numberKeyMove
-    else backMove
+    val keys = List(upMoves, downMoves, numberKeyMove, backMove).min
+    keys
   }
 
-  def keyPresses(channelsToView: List[Int], previousChannel: Any = Nil, mainCount: Int = 0): Int = {
+  def keyPresses(channelsToView: List[Int], previousChannel: Int = -1, mainCount: Int = 0): Int = {
     channelsToView match {
       case Nil                  => throw new IllegalArgumentException("Invalid input")
       case x :: Nil             => throw new IllegalArgumentException("Invalid input")
